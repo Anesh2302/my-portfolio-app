@@ -100,7 +100,7 @@ def slugify(t): return re.sub(r"[^a-z0-9]+", "-", t.lower()).strip("-")
 
 # ── SEED ──
 SEED_PROJECTS = [
- dict(title="TALENTOS", category="web", tech="Flask, Python, SQLite, OTP, TOTP 2FA",
+ dict(title="TALENTOS", category="tool", tech="Flask, Python, SQLite, OTP, TOTP 2FA",
       live_url="https://anesh2302.github.io/talentos/", github_url="https://github.com/Anesh2302/talentos",
       short_desc="Recruitment & talent management platform — OTP email verification, TOTP 2FA, role-based access, job management, todo system, security dashboard.",
       how_made="HOW IT WAS MADE:\n1. Backend: Flask + SQLite. Users table with bcrypt password hashes.\n2. Email OTP verification with Flask-Mail + expiring tokens.\n3. TOTP 2FA with pyotp + QR codes for authenticator apps.\n4. Role-based access (admin/recruiter/candidate) via decorators.\n5. Jobs CRUD + applications + todo module + security dashboard (failed logins, audit log).\n6. Frontend: Jinja + vanilla JS. Deployed static demo to GitHub Pages, full Flask version runs locally."),
@@ -116,7 +116,7 @@ SEED_PROJECTS = [
       live_url="https://anesh2302.github.io/simonpeterai/", github_url="https://github.com/Anesh2302/simonpeterai",
       short_desc="AI-powered personal assistant — NVIDIA NIM integration, voice input/output, real-time chat, weather, notes, countdown timer, calculator, web search.",
       how_made="HOW IT WAS MADE:\n1. Flask backend proxies chat to NVIDIA NIM LLM API (key on server, never in browser).\n2. Web Speech API for voice input (SpeechRecognition) + speechSynthesis for output.\n3. Tools layer in JS/Python: weather (Open-Meteo), notes (localStorage), countdown timer, calculator, web search links.\n4. Chat UI with typing effect + history. Static demo on GitHub Pages, full AI needs API key."),
- dict(title="PROJECTPOP", category="tool", tech="Flask, SQLite, pyotp, SSL scan",
+ dict(title="PROJECTPOP", category="cyber", tech="Flask, SQLite, pyotp, SSL scan",
       live_url="https://anesh2302.github.io/projectpop/", github_url="https://github.com/Anesh2302/projectpop",
       short_desc="Security analysis platform — real website scanner (SSL, headers, ports, tech detection), IP blocker, 2FA user/admin auth, alerts, audit logging.",
       how_made="HOW IT WAS MADE:\n1. Flask + SQLite with Flask-Login + pyotp 2FA.\n2. Scanner module: ssl socket cert fetch, requests header checks (HSTS, CSP, X-Frame), socket port checks, Wappalyzer-style tech fingerprints.\n3. IP blocklist + rate limiting + audit log table.\n4. Admin dashboard with charts + alerts via email.\n5. Background scans with threading."),
@@ -128,6 +128,66 @@ SEED_PROJECTS = [
       live_url="https://anesh2302.github.io/mongodb-academy/", github_url="https://github.com/Anesh2302/mongodb-academy",
       short_desc="MongoDB learning platform — interactive playground, progress tracking, dark/light mode, search. No login. Pure learning.",
       how_made="HOW IT WAS MADE:\n1. Static HTML/CSS/JS course with embedded Mongo shell simulator written in JS (parses find/insert/update).\n2. Progress in localStorage, dark/light via CSS variables.\n3. Python scripts generate lesson JSON from markdown.\n4. Client-side search index. Hosted on GitHub Pages."),
+ dict(title="NORDHAUS", category="web", tech="HTML, CSS, JavaScript",
+      live_url="https://anesh2302.github.io/creative-agency-web/", github_url="https://github.com/Anesh2302/creative-agency-web",
+      short_desc="Creative agency site (NORDHAUS) — web design, development and CRM services with a bold agency landing page.",
+      how_made="HOW IT WAS MADE:\n1. Hand-coded static site: semantic HTML sections for services, work and contact.\n2. Custom CSS system with agency branding, gradients and responsive grid.\n3. Vanilla JS for nav, scroll reveals and interactive elements.\n4. Deployed to GitHub Pages, zero build step."),
+ dict(title="CYS CTF ARENA", category="cyber", tech="Flask, Python, SQLite",
+      live_url="https://anesh2302.github.io/ctf_cys/", github_url="https://github.com/Anesh2302/ctf_cys",
+      short_desc="45-challenge CTF platform — Web, Crypto, Pwn, Forensics, OSINT categories with scoring and an auto-solver toolkit.",
+      how_made="HOW IT WAS MADE:\n1. Flask backend serving 45 challenges across 5 categories with a SQLite scoreboard.\n2. Each challenge is a small vulnerable app or puzzle with flag validation.\n3. Auto-solver scripts in Python for rapid testing of Web/Crypto tasks.\n4. Frontend leaderboard + challenge cards. Static preview on GitHub Pages."),
+ dict(title="CYBERPAD", category="cyber", tech="Flask, Python, JavaScript",
+      live_url="https://anesh2302.github.io/cyberpad/", github_url="https://github.com/Anesh2302/cyberpad",
+      short_desc="iPad (iOS 9) remote dashboard for a Windows PC/WSL — run allowlisted commands from an old iPad over the LAN.",
+      how_made="HOW IT WAS MADE:\n1. Flask backend exposing only an allowlisted command set (no raw shell) for safety.\n2. Lightweight mobile-first web UI tuned for old iOS Safari.\n3. WSL bridge so Windows + Linux commands both work.\n4. Token auth on every request. Runs on the home network."),
+ dict(title="CYPHERCON", category="cyber", tech="HTML, CSS, JavaScript",
+      live_url="https://anesh2302.github.io/CypherCon/", github_url="https://github.com/Anesh2302/CypherCon",
+      short_desc="CypherCon Monkey-King cybersecurity symposium single-page site — schedule, speakers and QR entry passes.",
+      how_made="HOW IT WAS MADE:\n1. Single-page static site with Monkey-King theme art and section navigation.\n2. QR code generation via CDN for entry passes.\n3. Countdown timer and animated schedule in vanilla JS.\n4. Hosted on GitHub Pages."),
+ dict(title="CYPHERCON 3D", category="web", tech="React, Vite, Tailwind, Framer Motion",
+      live_url="https://anesh2302.github.io/CypherCon3D/", github_url="https://github.com/Anesh2302/CypherCon3D",
+      short_desc="3D React experience for CypherCon — Vite + Tailwind + Framer Motion with immersive animated scenes.",
+      how_made="HOW IT WAS MADE:\n1. Vite + React 19 scaffold with Tailwind styling.\n2. Framer Motion page transitions and scroll-driven 3D-feel scenes.\n3. Component library for hero, lineup, tickets and FAQ.\n4. Built to static dist and published on GitHub Pages."),
+ dict(title="DEADPOOL DESIGN PODS", category="web", tech="HTML, CSS, JavaScript",
+      live_url="https://anesh2302.github.io/deadpool-webdesign-poster/", github_url="https://github.com/Anesh2302/deadpool-webdesign-poster",
+      short_desc="Deadpool & Wolverine Pinterest-style site — posters, design trends and web-design tutorials with a merc attitude.",
+      how_made="HOW IT WAS MADE:\n1. Masonry-style poster grid in pure CSS columns.\n2. Trend + tutorial articles as static sections with deep red/yellow styling.\n3. Vanilla JS filtering and lightbox viewing.\n4. Hosted on GitHub Pages."),
+ dict(title="DESIGNSTUDIO", category="tool", tech="Flask, SQLite, Fabric.js, jsPDF",
+      live_url="https://anesh2302.github.io/designstudio/", github_url="https://github.com/Anesh2302/designstudio",
+      short_desc="Canva-style drag-drop editor — layers, templates, PNG/PDF export and shareable designs with login.",
+      how_made="HOW IT WAS MADE:\n1. Flask + SQLite + Bcrypt auth for accounts and saved designs.\n2. Fabric.js canvas: drag-drop layers, text, shapes, templates.\n3. Export pipeline: canvas to PNG plus jsPDF for PDF download.\n4. Share links per design. Static demo on GitHub Pages."),
+ dict(title="FACEID SECURITY", category="cyber", tech="Python, OpenCV, Flask, Docker",
+      live_url="https://anesh2302.github.io/face-id-security/", github_url="https://github.com/Anesh2302/face-id-security",
+      short_desc="Face-only-login Ubuntu build — HOG face recognition unlock, continuous presence lock and a web dashboard.",
+      how_made="HOW IT WAS MADE:\n1. HOG + face-encoding recognition pipeline in Python/OpenCV.\n2. PAM-style login hook plus a daemon that locks when the face leaves.\n3. Flask dashboard showing access events and enrolled users.\n4. Shipped as Docker/VM image with setup scripts."),
+ dict(title="FOUNDYOU", category="web", tech="Next.js, React, Prisma, Tailwind, Fabric.js",
+      live_url="https://anesh2302.github.io/foundyou/", github_url="https://github.com/Anesh2302/foundyou",
+      short_desc="Design-creation app with auth and database — the Next.js evolution of the drag-drop editor.",
+      how_made="HOW IT WAS MADE:\n1. Next.js 16 + React 19 app router with Tailwind UI.\n2. Prisma database layer for users and saved designs.\n3. Fabric.js editor embedded as a client component.\n4. Static export preview on GitHub Pages, full stack runs on Node."),
+ dict(title="RE-VENGE GODFATHER", category="cyber", tech="React, Vite, GSAP",
+      live_url="https://anesh2302.github.io/Godfather/", github_url="https://github.com/Anesh2302/Godfather",
+      short_desc="Godfather-themed reverse-engineering hackathon registration site for SRM VEC — dark mafia styling.",
+      how_made="HOW IT WAS MADE:\n1. React 18 + Vite with a Godfather visual theme.\n2. GSAP scroll animations for cinematic section reveals.\n3. Registration form with event rules and team slots.\n4. Built to static dist on GitHub Pages."),
+ dict(title="ZYVERSE HOTD", category="web", tech="React, Vite, GSAP",
+      live_url="https://anesh2302.github.io/HouseOfDragon/", github_url="https://github.com/Anesh2302/HouseOfDragon",
+      short_desc="House of the Dragon-themed Zyverse 2K26 registration site — houses, events and sign-ups.",
+      how_made="HOW IT WAS MADE:\n1. React 18 + Vite with dragon-house theming and custom fonts.\n2. GSAP animated hero and house sections.\n3. Event listing + registration flow.\n4. Static build deployed to GitHub Pages."),
+ dict(title="REVERSE HACKATHON", category="cyber", tech="HTML, CSS, JavaScript",
+      live_url="https://anesh2302.github.io/reverse-hackathon-deadpool/", github_url="https://github.com/Anesh2302/reverse-hackathon-deadpool",
+      short_desc="Captain-America-themed DEP-CYS flagship event site — countdown, 15 missions and registration.",
+      how_made="HOW IT WAS MADE:\n1. Static event site with hero countdown timer in vanilla JS.\n2. 15 mission cards with rules and difficulty badges.\n3. Registration section with team format details.\n4. Hosted on GitHub Pages."),
+ dict(title="REVERSEHACK 2K26", category="cyber", tech="React, Vite, Tailwind, Express, MongoDB",
+      live_url="https://anesh2302.github.io/ReverseHack2k26/", github_url="https://github.com/Anesh2302/ReverseHack2k26",
+      short_desc="DEP-CYS 2026 registration platform — 15 domains, solo/duo entries, countdown, admin panel with CSV export.",
+      how_made="HOW IT WAS MADE:\n1. React 19 + Tailwind frontend with countdown and domain picker.\n2. Express backend with Mongoose models (JSON fallback for offline).\n3. Admin route with registrations table + CSV export.\n4. Static frontend on GitHub Pages, API runs on Node."),
+ dict(title="ZYVERSE 2K26", category="cyber", tech="React, Three.js, GSAP, Vite",
+      live_url="https://anesh2302.github.io/Sympo2006/", github_url="https://github.com/Anesh2302/Sympo2006",
+      short_desc="National cybersecurity symposium site (SRM VEC) — dragon-realm 3D experience with events and registration.",
+      how_made="HOW IT WAS MADE:\n1. React 19 + React-Three-Fiber dragon-realm 3D hero scene.\n2. GSAP scroll storytelling across event sections.\n3. Events, schedule and registration modules.\n4. Vite static build on GitHub Pages."),
+ dict(title="WATERMARK REMOVER", category="tool", tech="Flask, Python, OpenCV",
+      live_url="https://anesh2302.github.io/watermark-remover/", github_url="https://github.com/Anesh2302/watermark-remover",
+      short_desc="Upload image, video or document and strip watermarks at the same resolution.",
+      how_made="HOW IT WAS MADE:\n1. Flask upload pipeline for images, video frames and documents.\n2. Detector module finds watermark regions (OpenCV inpainting).\n3. Reconstruction fills regions while keeping original resolution.\n4. Download of cleaned files. Demo page on GitHub Pages."),
 ]
 
 def seed():
@@ -184,9 +244,11 @@ def index():
 @app.route("/projects")
 def projects():
     cat = request.args.get("cat", "all")
+    cats = [r[0] for r in db.session.query(Project.category).distinct().order_by(Project.category).all()]
     q = Project.query
-    if cat in ("web", "ai", "tool"): q = q.filter_by(category=cat)
-    return render_template("projects.html", projects=q.order_by(Project.id).all(), cat=cat)
+    if cat in cats: q = q.filter_by(category=cat)
+    else: cat = "all"
+    return render_template("projects.html", projects=q.order_by(Project.id).all(), cat=cat, cats=cats)
 
 @app.route("/projects/<slug>")
 def project_detail(slug):

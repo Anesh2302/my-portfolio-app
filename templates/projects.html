@@ -11,9 +11,7 @@
       <input id="projSearch" placeholder="Search projects, tech…" autocomplete="off">
     </div>
     <a href="?cat=all" class="fbtn {% if cat=='all' %}on{% endif %}">All</a>
-    <a href="?cat=web" class="fbtn {% if cat=='web' %}on{% endif %}">Web</a>
-    <a href="?cat=ai" class="fbtn {% if cat=='ai' %}on{% endif %}">AI</a>
-    <a href="?cat=tool" class="fbtn {% if cat=='tool' %}on{% endif %}">Tools</a>
+    {% for c in cats %}<a href="?cat={{c}}" class="fbtn {% if cat==c %}on{% endif %}">{{c}}</a>{% endfor %}
   </div>
   <div class="grid" id="projGrid">
   {% for p in projects %}

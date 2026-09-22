@@ -11,7 +11,7 @@
     <div class="frow">
       <div><label class="lbl">Slug (auto)</label><input name="slug" value="{{ p.slug if p else '' }}"></div>
       <div><label class="lbl">Category</label>
-        <select name="category">{% for c in ["web","ai","tool"] %}<option value="{{c}}" {% if p and p.category==c %}selected{% endif %}>{{c|upper}}</option>{% endfor %}</select></div>
+        <select name="category">{% for c in ["web","ai","cyber","tool","other"] %}<option value="{{c}}" {% if p and p.category==c %}selected{% endif %}>{{c|upper}}</option>{% endfor %}</select></div>
     </div>
     <label class="lbl">Live URL</label>
     <input name="live_url" value="{{ p.live_url if p else '' }}" placeholder="https://…">

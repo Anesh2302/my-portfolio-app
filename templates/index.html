@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 <section class="hero">
+  <div class="hero-grid">
+  <div>
   <div class="badge rv"><i></i>J.A.R.V.I.S. ONLINE</div>
   <h1 class="rv" style="--d:.08s">ANESH <span class="gold">G J</span></h1>
   <p class="tagline rv" style="--d:.16s">Full-Stack Developer &amp; <span class="ty" id="typer">Security Enthusiast</span></p>
@@ -9,12 +11,20 @@
     <a href="{{ url_for('projects') }}" class="btn btn-gold">View my work</a>
     <a href="mailto:simonpetercys@gmail.com" class="btn btn-outline">Get in touch</a>
   </div>
+  </div>
+  <div class="photo-wrap rv" style="--d:.2s">
+    <div class="photo-ring"></div>
+    <div class="photo-frame"><img src="{{ url_for('static', filename='profile.jpg') }}" alt="Anesh G J"></div>
+    <div class="photo-tag">★ ANESH G J ★</div>
+  </div>
+  </div>
   <div class="stats rv" style="--d:.4s">
     <div class="stat"><b data-count="{{ n_projects }}" data-suffix="+">0</b><span>Projects</span></div>
-    <div class="stat"><b data-count="11" data-suffix="+">0</b><span>Technologies</span></div>
+    <div class="stat"><b data-count="15" data-suffix="+">0</b><span>Technologies</span></div>
     <div class="stat"><b data-count="4">0</b><span>Themes</span></div>
   </div>
 </section>
+<div class="tape rv"><div>★ WEB APPS ★ AI TOOLS ★ SECURITY ★ CTF ★ HACKATHONS ★ WEB APPS ★ AI TOOLS ★ SECURITY ★ CTF ★ HACKATHONS ★&nbsp;</div></div>
 
 <section class="panel rv">
   <div class="sysline">SYS://ABOUT</div>
