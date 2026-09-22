@@ -1,13 +1,20 @@
 {% extends "base.html" %}
 {% block title %}Register{% endblock %}
 {% block content %}
-<section class="panel narrow">
-<h2>REGISTER</h2>
-<form method="POST"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-<input name="username" placeholder="username (a-z 0-9 _)" required>
-<input name="email" type="email" placeholder="email" required>
-<input name="password" type="password" placeholder="password 8+ chars" required minlength="8">
-<button class="btn btn-gold full">CREATE ACCOUNT</button></form>
-<p class="muted">First account becomes admin. Passwords are bcrypt-hashed.</p>
+<section class="panel narrow rv in authcard">
+  <span class="orb a"></span><span class="orb b"></span>
+  <div class="sysline">SYS://AUTH</div>
+  <h2>JOIN THE CREW</h2>
+  <p class="sub">One account — dashboard, reminders, tasks, your own theme.</p>
+  <form method="POST"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <label class="lbl">Username (a-z 0-9 _)</label>
+    <input name="username" required autocomplete="username">
+    <label class="lbl">Email</label>
+    <input name="email" type="email" required autocomplete="email">
+    <label class="lbl">Password (8+ chars)</label>
+    <input name="password" type="password" required minlength="8" autocomplete="new-password">
+    <button class="btn btn-gold full">Create account</button>
+  </form>
+  <p class="muted" style="margin-top:12px">Passwords are bcrypt-hashed. First account becomes admin.</p>
 </section>
 {% endblock %}

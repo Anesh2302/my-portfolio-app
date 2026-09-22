@@ -179,7 +179,7 @@ def sync_from_portfolio():
 @app.route("/")
 def index():
     projects = Project.query.order_by(Project.id).limit(6).all()
-    return render_template("index.html", projects=projects)
+    return render_template("index.html", projects=projects, n_projects=Project.query.count())
 
 @app.route("/projects")
 def projects():
@@ -192,7 +192,12 @@ def projects():
 def project_detail(slug):
     p = Project.query.filter_by(slug=slug).first_or_404()
     tech_list = [t.strip() for t in (p.tech or "").split(",") if t.strip()]
-    return render_template("project_detail.html", p=p, tech_list=tech_list)
+    steps = []
+    for line in (p.how_made or "").splitlines():
+        line = re.sub(r"^\s*\d+[\).\:\-]\s*", "", line).strip()
+        if line and line.upper() != "HOW IT WAS MADE:":
+            steps.append(line)
+    return render_template("project_detail.html", p=p, tech_list=tech_list, steps=steps)
 
 @app.route("/register", methods=["GET", "POST"])
 @limiter.limit("10/hour")

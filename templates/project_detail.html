@@ -1,19 +1,28 @@
 {% extends "base.html" %}
 {% block title %}{{p.title}} — How it was made{% endblock %}
 {% block content %}
-<section class="panel">
-<small class="muted">SYS://PROJECTS / {{p.category|upper}}</small>
-<h2>{{p.title}}</h2>
-<p>{{p.short_desc}}</p>
-<div class="tags">{% for t in tech_list %}<span class="tag">{{t}}</span>{% endfor %}</div>
-<div class="row">
-{% if p.live_url %}<a href="{{p.live_url}}" target="_blank" class="btn btn-gold">🚀 LIVE DEMO</a>{% endif %}
-{% if p.github_url %}<a href="{{p.github_url}}" target="_blank" class="btn btn-outline">GITHUB</a>{% endif %}
-<a href="{{ url_for('projects') }}" class="btn btn-outline">← BACK</a>
-</div>
+<section class="panel rv in">
+  <div class="sysline">SYS://PROJECTS / {{p.category|upper}}</div>
+  <h2>{{p.title}}</h2>
+  <p class="sub">{{p.short_desc}}</p>
+  <div class="tags">{% for t in tech_list %}<span class="tag">{{t}}</span>{% endfor %}</div>
+  <div class="row">
+    {% if p.live_url %}<a href="{{p.live_url}}" target="_blank" class="btn btn-gold">🚀 Live demo</a>{% endif %}
+    {% if p.github_url %}<a href="{{p.github_url}}" target="_blank" class="btn btn-outline">GitHub</a>{% endif %}
+    <a href="{{ url_for('projects') }}" class="btn btn-outline">← All projects</a>
+  </div>
 </section>
-<section class="panel">
-<h2>EXPLAIN / HOW IT WAS MADE</h2>
-<pre class="how">{{p.how_made or "Details coming soon."}}</pre>
+<section class="panel rv">
+  <div class="sysline">SYS://BUILD-LOG</div>
+  <h2>EXPLAIN / HOW IT WAS MADE</h2>
+  {% if steps %}
+  <div class="timeline">
+    {% for s in steps %}
+    <div class="step" data-n="{{ loop.index }}" style="--i:{{ loop.index0 }}"><p>{{ s }}</p></div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="muted">Details coming soon.</p>
+  {% endif %}
 </section>
 {% endblock %}

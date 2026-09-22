@@ -1,17 +1,29 @@
 {% extends "base.html" %}
 {% block title %}{% if p %}Edit{% else %}New{% endif %} project{% endblock %}
 {% block content %}
-<section class="panel"><h2>{% if p %}EDIT{% else %}NEW{% endif %} PROJECT</h2>
-<form method="POST"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-<input name="title" placeholder="Title" value="{{ p.title if p else '' }}" required>
-<input name="slug" placeholder="slug (auto)" value="{{ p.slug if p else '' }}">
-<input name="live_url" placeholder="Live URL https://…" value="{{ p.live_url if p else '' }}">
-<input name="github_url" placeholder="GitHub URL" value="{{ p.github_url if p else '' }}">
-<input name="tech" placeholder="Tech: Flask, Python…" value="{{ p.tech if p else '' }}">
-<select name="category">
-{% for c in ["web","ai","tool"] %}<option value="{{c}}" {% if p and p.category==c %}selected{% endif %}>{{c|upper}}</option>{% endfor %}
-</select>
-<textarea name="short_desc" rows="3" placeholder="Short description">{{ p.short_desc if p else '' }}</textarea>
-<textarea name="how_made" rows="10" placeholder="EXPLAIN / HOW IT WAS MADE — steps, stack, deployment">{{ p.how_made if p else '' }}</textarea>
-<button class="btn btn-gold full">SAVE (updates site + themes instantly)</button></form></section>
+<section class="panel narrow rv in authcard">
+  <span class="orb a"></span><span class="orb b"></span>
+  <div class="sysline">SYS://PROJECT-EDITOR</div>
+  <h2>{% if p %}EDIT{% else %}NEW{% endif %} PROJECT</h2>
+  <form method="POST"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <label class="lbl">Title</label>
+    <input name="title" value="{{ p.title if p else '' }}" required>
+    <div class="frow">
+      <div><label class="lbl">Slug (auto)</label><input name="slug" value="{{ p.slug if p else '' }}"></div>
+      <div><label class="lbl">Category</label>
+        <select name="category">{% for c in ["web","ai","tool"] %}<option value="{{c}}" {% if p and p.category==c %}selected{% endif %}>{{c|upper}}</option>{% endfor %}</select></div>
+    </div>
+    <label class="lbl">Live URL</label>
+    <input name="live_url" value="{{ p.live_url if p else '' }}" placeholder="https://…">
+    <label class="lbl">GitHub URL</label>
+    <input name="github_url" value="{{ p.github_url if p else '' }}">
+    <label class="lbl">Tech (comma separated)</label>
+    <input name="tech" value="{{ p.tech if p else '' }}" placeholder="Flask, Python…">
+    <label class="lbl">Short description</label>
+    <textarea name="short_desc" rows="3">{{ p.short_desc if p else '' }}</textarea>
+    <label class="lbl">How it was made (one step per line)</label>
+    <textarea name="how_made" rows="10">{{ p.how_made if p else '' }}</textarea>
+    <button class="btn btn-gold full">Save — live everywhere instantly</button>
+  </form>
+</section>
 {% endblock %}

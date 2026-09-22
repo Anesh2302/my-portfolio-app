@@ -1,12 +1,18 @@
 {% extends "base.html" %}
 {% block title %}Login{% endblock %}
 {% block content %}
-<section class="panel narrow">
-<h2>LOGIN</h2>
-<form method="POST"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-<input name="ident" placeholder="username or email" required>
-<input name="password" type="password" placeholder="password" required>
-<button class="btn btn-gold full">LOGIN</button></form>
-<p class="muted">No account? <a href="{{ url_for('register') }}">Register</a><br>Default admin: <b>admin / Admin123!</b></p>
+<section class="panel narrow rv in authcard">
+  <span class="orb a"></span><span class="orb b"></span>
+  <div class="sysline">SYS://AUTH</div>
+  <h2>WELCOME BACK</h2>
+  <p class="sub">Log in to reach your dashboard, reminders &amp; tasks.</p>
+  <form method="POST"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <label class="lbl">Username or email</label>
+    <input name="ident" required autocomplete="username">
+    <label class="lbl">Password</label>
+    <input name="password" type="password" required autocomplete="current-password">
+    <button class="btn btn-gold full">Login</button>
+  </form>
+  <p class="muted" style="margin-top:12px">No account? <a href="{{ url_for('register') }}">Register</a><br>Default admin: <b>admin / Admin123!</b></p>
 </section>
 {% endblock %}

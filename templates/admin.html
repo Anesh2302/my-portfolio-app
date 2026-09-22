@@ -1,19 +1,44 @@
 {% extends "base.html" %}
 {% block title %}Admin{% endblock %}
 {% block content %}
-<section class="panel"><h2>ADMIN — {{n_users}} users · {{n_projects}} projects · {{n_tasks}} tasks · {{n_rems}} reminders</h2>
-<form method="POST" action="{{ url_for('admin_sync') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-<button class="btn btn-gold">🔄 SYNC FROM LATEST WEBSITE (portfolio/index.html)</button></form>
-<p class="muted">Pulls About/projects + live URLs from your latest site into this app. New/edited projects + theme changes appear everywhere instantly.</p>
-<a href="{{ url_for('admin_project') }}" class="btn btn-outline">+ NEW PROJECT</a></section>
-<section class="panel"><h2>PROJECTS</h2>
-{% for p in projects %}<div class="item"><b>{{p.title}}</b> <span class="muted">{{p.live_url}}</span>
-<div class="row"><a href="{{ url_for('admin_project', pid=p.id) }}" class="btn btn-sm btn-outline">EDIT</a>
-<form method="POST" action="{{ url_for('admin_project_del', pid=p.id) }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn btn-sm btn-outline">DELETE</button></form></div></div>{% endfor %}
+<section class="panel rv in">
+  <div class="sysline">SYS://ADMIN</div>
+  <h2>COMMAND CENTER</h2>
+  <div class="statgrid">
+    <div class="scard"><b data-count="{{n_users}}">0</b><span>Users</span></div>
+    <div class="scard"><b data-count="{{n_projects}}">0</b><span>Projects</span></div>
+    <div class="scard"><b data-count="{{n_tasks}}">0</b><span>Tasks</span></div>
+    <div class="scard"><b data-count="{{n_rems}}">0</b><span>Reminders</span></div>
+  </div>
+  <div class="row">
+    <form method="POST" action="{{ url_for('admin_sync') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button class="btn btn-gold">🔄 Sync from latest website</button></form>
+    <a href="{{ url_for('admin_project') }}" class="btn btn-outline">+ New project</a>
+  </div>
+  <p class="muted" style="margin-top:10px">Sync pulls projects + live URLs from portfolio/index.html. Saves appear everywhere, in every theme, instantly.</p>
 </section>
-<section class="panel"><h2>USERS</h2>
-{% for u in users %}<div class="item"><b>{{u.username}}</b> <span class="muted">{{u.email}} · {{u.role}} · theme {{u.theme}}</span>
-<div class="row"><form method="POST" action="{{ url_for('admin_role', uid=u.id) }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn btn-sm btn-outline">TOGGLE ADMIN</button></form>
-<form method="POST" action="{{ url_for('admin_del_user', uid=u.id) }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn btn-sm btn-outline">DELETE</button></form></div></div>{% endfor %}
+
+<section class="panel rv">
+  <div class="sysline">SYS://PROJECTS</div>
+  <h2>PROJECTS</h2>
+  {% for p in projects %}
+  <div class="item"><span class="dotp med"></span>
+    <div class="grow"><b>{{p.title}}</b> <span class="pill">{{p.category}}</span><br><span class="muted">{{p.live_url or "no live URL"}}</span></div>
+    <a href="{{ url_for('admin_project', pid=p.id) }}" class="btn btn-sm btn-outline">Edit</a>
+    <form method="POST" action="{{ url_for('admin_project_del', pid=p.id) }}" data-confirm="Delete {{p.title}}?"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn btn-sm btn-danger">✕</button></form>
+  </div>
+  {% endfor %}
+</section>
+
+<section class="panel rv">
+  <div class="sysline">SYS://USERS</div>
+  <h2>USERS</h2>
+  {% for u in users %}
+  <div class="item"><span class="dotp {% if u.role=='admin' %}high{% else %}low{% endif %}"></span>
+    <div class="grow"><b>{{u.username}}</b> <span class="pill {% if u.role=='admin' %}gold{% endif %}">{{u.role}}</span><br><span class="muted">{{u.email}} · theme {{u.theme}}</span></div>
+    <form method="POST" action="{{ url_for('admin_role', uid=u.id) }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn btn-sm btn-outline">Toggle admin</button></form>
+    <form method="POST" action="{{ url_for('admin_del_user', uid=u.id) }}" data-confirm="Delete user {{u.username}}?"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn btn-sm btn-danger">✕</button></form>
+  </div>
+  {% endfor %}
 </section>
 {% endblock %}
