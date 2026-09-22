@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bangers&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Jost:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 <script>try{document.documentElement.dataset.theme=localStorage.getItem('theme')||document.documentElement.dataset.theme;}catch(e){}</script>
 </head>
@@ -37,8 +37,8 @@
       <a class="btn btn-sm btn-gold" href="{{ url_for('register') }}">Register</a>
     {% endif %}
     <select class="themeSel" id="themeSel" title="Theme">
-      <option value="iron">IRON</option><option value="gold">GOLD</option>
-      <option value="crimson">CRIMSON</option><option value="ghost">GHOST</option>
+      <option value="iron">NOIR</option><option value="gold">CHAMPAGNE</option>
+      <option value="crimson">BORDEAUX</option><option value="ghost">IVORY</option>
     </select>
   </div>
 </nav>
@@ -50,7 +50,7 @@
 <main class="container">{% block content %}{% endblock %}</main>
 
 <footer>
-  <p>© <span id="yr">2026</span> ANESH G J · Forged with Flask + a little arc-reactor energy</p>
+  <p>© <span id="yr">2026</span> ANESH G J · CRAFTED WITH PRECISION</p>
   <div class="fl">
     <a href="https://github.com/Anesh2302" target="_blank">GitHub</a>
     <a href="mailto:simonpetercys@gmail.com">Email</a>

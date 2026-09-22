@@ -3,11 +3,11 @@
 {% block content %}
 <section class="panel rv in">
   <div class="sysline">SYS://REMINDERS</div>
-  <h2>⏰ REMINDERS <span class="pill gold">with sound</span></h2>
+  <h2>REMINDERS <span class="pill gold">with sound</span></h2>
   <p class="sub">Keep this tab open — when time hits, an alarm plays + a notification pops. Allow sound &amp; notifications in your browser.</p>
   <div class="row">
-    <button class="btn btn-sm btn-outline" onclick="playReminderSound();showToast('Test sound — did you hear it?')">🔊 Test sound</button>
-    <button class="btn btn-sm btn-outline" onclick="enableNotifications()">🔔 Enable notifications</button>
+    <button class="btn btn-sm btn-outline" onclick="playReminderSound();showToast('Test sound — did you hear it?')">Test sound</button>
+    <button class="btn btn-sm btn-outline" onclick="enableNotifications()">Enable notifications</button>
   </div>
   <form method="POST" class="form-grid"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <label class="lbl">Remind me to</label>
