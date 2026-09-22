@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<section class="panel narrow">
+<h2>REGISTER</h2>
+<form method="POST"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<input name="username" placeholder="username (a-z 0-9 _)" required>
+<input name="email" type="email" placeholder="email" required>
+<input name="password" type="password" placeholder="password 8+ chars" required minlength="8">
+<button class="btn btn-gold full">CREATE ACCOUNT</button></form>
+<p class="muted">First account becomes admin. Passwords are bcrypt-hashed.</p>
+</section>
+{% endblock %}

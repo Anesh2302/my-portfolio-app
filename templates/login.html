@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<section class="panel narrow">
+<h2>LOGIN</h2>
+<form method="POST"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<input name="ident" placeholder="username or email" required>
+<input name="password" type="password" placeholder="password" required>
+<button class="btn btn-gold full">LOGIN</button></form>
+<p class="muted">No account? <a href="{{ url_for('register') }}">Register</a><br>Default admin: <b>admin / Admin123!</b></p>
+</section>
+{% endblock %}

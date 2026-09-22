@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Tasks{% endblock %}
+{% block content %}
+<section class="panel"><h2>✅ TASKS TO DO</h2>
+<form method="POST" class="form-grid"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<input name="title" placeholder="New task…" required>
+<select name="priority"><option value="low">LOW</option><option value="med" selected>MED</option><option value="high">HIGH</option></select>
+<input name="due_date" type="date">
+<button class="btn btn-gold">ADD TASK</button></form></section>
+<section class="panel">
+{% for t in tasks %}
+<div class="item {% if t.done %}done{% endif %}">
+<b>{{t.title}}</b> <span class="muted">[{{t.priority}}] {{t.due_date}}</span>
+<div class="row">
+<form method="POST" action="{{ url_for('task_toggle', tid=t.id) }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn btn-sm btn-outline">{% if t.done %}UNDO{% else %}DONE{% endif %}</button></form>
+<form method="POST" action="{{ url_for('task_del', tid=t.id) }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn btn-sm btn-outline">DELETE</button></form>
+</div></div>
+{% else %}<p class="muted">No tasks.</p>{% endfor %}
+</section>
+{% endblock %}

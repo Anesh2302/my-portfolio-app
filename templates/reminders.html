@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Reminders{% endblock %}
+{% block content %}
+<section class="panel"><h2>⏰ REMINDERS (WITH SOUND)</h2>
+<p class="muted">Keep this tab open — when time comes, an alarm sound plays + notification pops. Allow sound/notifications in browser.</p>
+<button class="btn btn-sm btn-outline" onclick="playReminderSound();showToast('Test sound 🔊')">🔊 TEST SOUND</button>
+<button class="btn btn-sm btn-outline" onclick="enableNotifications()">🔔 ENABLE NOTIFICATIONS</button>
+<form method="POST" class="form-grid"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<input name="title" placeholder="Remind me to…" required>
+<input name="remind_at" type="datetime-local" required>
+<input name="notes" placeholder="notes (optional)">
+<button class="btn btn-gold">SET REMINDER</button></form></section>
+<section class="panel">
+{% for r in rems %}
+<div class="item {% if r.done %}done{% endif %}">
+<b>{{r.title}}</b><br><span class="muted">{{r.remind_at.strftime('%d %b %Y %H:%M')}} {% if r.notes %}· {{r.notes}}{% endif %}</span>
+<div class="row">
+{% if not r.done %}<form method="POST" action="{{ url_for('reminder_done', rid=r.id) }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn btn-sm btn-outline">DONE</button></form>{% endif %}
+<form method="POST" action="{{ url_for('reminder_del', rid=r.id) }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="btn btn-sm btn-outline">DELETE</button></form>
+</div></div>
+{% else %}<p class="muted">No reminders yet.</p>{% endfor %}
+</section>
+<script>startReminderPoller(true);</script>
+{% endblock %}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="{{ current_user.theme if current_user.is_authenticated else 'iron' }}">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#00d4ff">
+<link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+<link rel="apple-touch-icon" href="{{ url_for('static', filename='icon-192.png') }}">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>{% block title %}Anesh G J — Portfolio App{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<nav class="navbar">
+  <a href="{{ url_for('index') }}" class="logo">ANESH<span>DEV</span></a>
+  <div class="links">
+    <a href="{{ url_for('index') }}">About</a>
+    <a href="{{ url_for('projects') }}">Projects</a>
+    {% if current_user.is_authenticated %}
+      <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('reminders') }}">Reminders</a>
+      <a href="{{ url_for('tasks') }}">Tasks</a>
+      {% if current_user.is_admin() %}<a href="{{ url_for('admin') }}" class="admin-link">Admin</a>{% endif %}
+      <span class="user">Hi, {{ current_user.username }}</span>
+      <a href="{{ url_for('logout') }}" class="btn btn-sm">Logout</a>
+    {% else %}
+      <a href="{{ url_for('login') }}">Login</a>
+      <a href="{{ url_for('register') }}" class="btn btn-sm">Register</a>
+    {% endif %}
+    <select id="themeSel" title="Theme">
+      <option value="iron">IRON</option><option value="gold">GOLD</option>
+      <option value="crimson">CRIMSON</option><option value="ghost">GHOST</option>
+    </select>
+  </div>
+</nav>
+{% with msgs = get_flashed_messages(with_categories=true) %}
+{% if msgs %}<div class="flash-wrap">{% for c,m in msgs %}<div class="flash {{c}}">{{m}}</div>{% endfor %}</div>{% endif %}
+{% endwith %}
+<main class="container">{% block content %}{% endblock %}</main>
+<footer><p>© 2026 ANESH G J · <a href="https://github.com/Anesh2302" target="_blank">GitHub</a> · <a href="mailto:simonpetercys@gmail.com">Email</a></p></footer>
+<div id="toast" class="toast"></div>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+<script>document.documentElement.dataset.theme = localStorage.getItem('theme') || document.documentElement.dataset.theme;
+document.getElementById('themeSel').value = document.documentElement.dataset.theme;</script>
+{% if current_user.is_authenticated %}<script>startReminderPoller(true);</script>{% endif %}
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register("/static/sw.js");}</script>
+</body>
+</html>

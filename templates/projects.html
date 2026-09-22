@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Projects — Anesh{% endblock %}
+{% block content %}
+<section class="panel">
+<h2>MY PROJECTS</h2>
+<div class="row">
+  <a href="?cat=all" class="btn btn-sm {% if cat=='all' %}btn-gold{% else %}btn-outline{% endif %}">ALL</a>
+  <a href="?cat=web" class="btn btn-sm {% if cat=='web' %}btn-gold{% else %}btn-outline{% endif %}">WEB</a>
+  <a href="?cat=ai" class="btn btn-sm {% if cat=='ai' %}btn-gold{% else %}btn-outline{% endif %}">AI</a>
+  <a href="?cat=tool" class="btn btn-sm {% if cat=='tool' %}btn-gold{% else %}btn-outline{% endif %}">TOOLS</a>
+</div>
+<div class="grid">
+{% for p in projects %}
+<div class="card">
+  <small class="muted">{{p.category|upper}}</small>
+  <h3>{{p.title}}</h3>
+  <p>{{p.short_desc}}</p>
+  <p class="muted">{{p.tech}}</p>
+  <div class="row">
+    {% if p.live_url %}<a href="{{p.live_url}}" target="_blank" class="btn btn-sm btn-gold">LIVE DEMO</a>{% endif %}
+    {% if p.github_url %}<a href="{{p.github_url}}" target="_blank" class="btn btn-sm btn-outline">GITHUB</a>{% endif %}
+    <a href="{{ url_for('project_detail', slug=p.slug) }}" class="btn btn-sm btn-outline">HOW MADE</a>
+  </div>
+</div>
+{% endfor %}
+</div>
+</section>
+{% endblock %}

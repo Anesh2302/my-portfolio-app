@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="badge">● J.A.R.V.I.S. ONLINE</div>
+  <h1>ANESH <span class="gold">G J</span></h1>
+  <p class="tagline">Full-Stack Developer & Security Enthusiast</p>
+  <p class="desc">I build web apps, AI tools & security platforms. From idea to production. This app holds my story, every project with live demo + how-it-was-made, reminders with sound, tasks, secure login & admin, and themes that update everywhere.</p>
+  <div class="row">
+    <a href="{{ url_for('projects') }}" class="btn btn-gold">VIEW MY WORK</a>
+    <a href="mailto:simonpetercys@gmail.com" class="btn btn-outline">GET IN TOUCH</a>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>ABOUT ME</h2>
+  <p>Cybersecurity-focused full-stack developer with experience designing and building AI assistants, web applications, and security tools end-to-end. Proficient in Flask/Python backend, JavaScript frontend, and offensive/defensive security tooling.</p>
+  <div class="tags">
+    {% for t in ["Python","JavaScript","Flask","Next.js","Express","Node.js","MySQL","SQLite","HTML/CSS","Socket.IO","Git"] %}
+    <span class="tag">{{t}}</span>{% endfor %}
+  </div>
+  <p class="muted">Email: simonpetercys@gmail.com · GitHub: github.com/Anesh2302</p>
+</section>
+
+<section class="panel">
+  <h2>FEATURED PROJECTS</h2>
+  <div class="grid">
+  {% for p in projects %}
+    <div class="card">
+      <h3>{{p.title}}</h3>
+      <p>{{p.short_desc[:140]}}…</p>
+      <div class="row">
+        {% if p.live_url %}<a href="{{p.live_url}}" target="_blank" class="btn btn-sm btn-gold">LIVE</a>{% endif %}
+        <a href="{{ url_for('project_detail', slug=p.slug) }}" class="btn btn-sm btn-outline">HOW IT WAS MADE</a>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+  <a href="{{ url_for('projects') }}" class="btn btn-outline">ALL PROJECTS →</a>
+</section>
+
+<section class="panel">
+  <h2>THIS APP INCLUDES</h2>
+  <ul class="feat">
+    <li>🔐 Login / Logout / Register + Admin panel, hashed passwords, rate-limits, CSRF, secure headers</li>
+    <li>⏰ Reminders with <b>sound alarm</b> + browser notification</li>
+    <li>✅ Personal task / to-do list</li>
+    <li>🎨 4 themes (Iron, Gold, Crimson, Ghost) — saved per user, applied everywhere</li>
+    <li>🔄 Admin “Sync from latest website” — pulls projects/live URLs from portfolio/index.html</li>
+  </ul>
+</section>
+{% endblock %}

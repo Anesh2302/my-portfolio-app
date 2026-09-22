@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}{% if p %}Edit{% else %}New{% endif %} project{% endblock %}
+{% block content %}
+<section class="panel"><h2>{% if p %}EDIT{% else %}NEW{% endif %} PROJECT</h2>
+<form method="POST"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<input name="title" placeholder="Title" value="{{ p.title if p else '' }}" required>
+<input name="slug" placeholder="slug (auto)" value="{{ p.slug if p else '' }}">
+<input name="live_url" placeholder="Live URL https://…" value="{{ p.live_url if p else '' }}">
+<input name="github_url" placeholder="GitHub URL" value="{{ p.github_url if p else '' }}">
+<input name="tech" placeholder="Tech: Flask, Python…" value="{{ p.tech if p else '' }}">
+<select name="category">
+{% for c in ["web","ai","tool"] %}<option value="{{c}}" {% if p and p.category==c %}selected{% endif %}>{{c|upper}}</option>{% endfor %}
+</select>
+<textarea name="short_desc" rows="3" placeholder="Short description">{{ p.short_desc if p else '' }}</textarea>
+<textarea name="how_made" rows="10" placeholder="EXPLAIN / HOW IT WAS MADE — steps, stack, deployment">{{ p.how_made if p else '' }}</textarea>
+<button class="btn btn-gold full">SAVE (updates site + themes instantly)</button></form></section>
+{% endblock %}

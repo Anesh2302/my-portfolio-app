@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<section class="panel"><h2>DASHBOARD — {{current_user.username}}</h2>
+<p class="muted">Role: {{current_user.role}} · Theme:
+<form method="POST" action="{{ url_for('set_theme') }}" style="display:inline"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<select name="theme" onchange="this.form.submit()">
+{% for t in ["iron","gold","crimson","ghost"] %}<option value="{{t}}" {% if current_user.theme==t %}selected{% endif %}>{{t|upper}}</option>{% endfor %}
+</select></form> (updates whole app)</p>
+<div class="row">
+<a href="{{ url_for('reminders') }}" class="btn btn-gold">⏰ REMINDERS</a>
+<a href="{{ url_for('tasks') }}" class="btn btn-outline">✅ TASKS</a>
+{% if current_user.is_admin() %}<a href="{{ url_for('admin') }}" class="btn btn-outline">ADMIN</a>{% endif %}
+</div></section>
+<section class="panel"><h2>UPCOMING REMINDERS</h2>
+{% for r in rems %}<div class="item"><b>{{r.title}}</b> <span class="muted">{{r.remind_at.strftime('%d %b %H:%M')}}</span></div>
+{% else %}<p class="muted">No reminders. <a href="{{ url_for('reminders') }}">Add one</a></p>{% endfor %}</section>
+<section class="panel"><h2>OPEN TASKS</h2>
+{% for t in tasks if not t.done %}<div class="item"><b>{{t.title}}</b> <span class="muted">[{{t.priority}}]</span></div>
+{% else %}<p class="muted">All clear.</p>{% endfor %}</section>
+{% endblock %}
