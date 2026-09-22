@@ -3,7 +3,7 @@ SIMONPETER PORTFOLIO APP — About + Projects (live URLs + how-made) + Reminders
 Run:  pip install -r requirements.txt  ;  python app.py
 Login: admin / Admin123!  (change after first login)
 """
-import os, re, secrets
+import os, re, secrets, tempfile
 from datetime import datetime, timedelta
 from functools import wraps
 
@@ -17,8 +17,11 @@ from flask_wtf import CSRFProtect
 from flask_talisman import Talisman
 
 BASE = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(BASE, "instance", "app.db")
-os.makedirs(os.path.join(BASE, "instance"), exist_ok=True)
+if os.environ.get("VERCEL"):
+    DB_PATH = os.path.join(tempfile.gettempdir(), "app.db")  # Vercel serverless: only tmp is writable
+else:
+    DB_PATH = os.path.join(BASE, "instance", "app.db")
+    os.makedirs(os.path.join(BASE, "instance"), exist_ok=True)
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", secrets.token_hex(32))
