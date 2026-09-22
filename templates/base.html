@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Jost:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 <script>try{document.documentElement.dataset.theme=localStorage.getItem('theme')||document.documentElement.dataset.theme;}catch(e){}</script>
 </head>
@@ -20,7 +20,7 @@
 <div class="bg-grid"></div>
 
 <nav class="navbar" id="navbar">
-  <a href="{{ url_for('index') }}" class="logo"><span class="dot"></span>ANESH<b>DEV</b></a>
+  <a href="{{ url_for('index') }}" class="logo"><span class="dot">▊</span>ANESH<b>DEV</b></a>
   <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
   <div class="links" id="navLinks">
     <a class="nl {% if request.path=='/' %}on{% endif %}" href="{{ url_for('index') }}">About</a>
@@ -37,8 +37,8 @@
       <a class="btn btn-sm btn-gold" href="{{ url_for('register') }}">Register</a>
     {% endif %}
     <select class="themeSel" id="themeSel" title="Theme">
-      <option value="iron">NOIR</option><option value="gold">CHAMPAGNE</option>
-      <option value="crimson">BORDEAUX</option><option value="ghost">IVORY</option>
+      <option value="iron">TERMINAL</option><option value="gold">AMBER</option>
+      <option value="crimson">REDALERT</option><option value="ghost">PAPER</option>
     </select>
   </div>
 </nav>

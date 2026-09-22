@@ -8,10 +8,10 @@
   <form method="POST" action="{{ url_for('set_theme') }}" class="row"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <label class="lbl" for="dtheme" style="margin:0">Theme</label>
     <select class="themeSel" id="dtheme" name="theme" onchange="this.form.submit()">
-      <option value="iron" {% if current_user.theme=='iron' %}selected{% endif %}>NOIR</option>
-      <option value="gold" {% if current_user.theme=='gold' %}selected{% endif %}>CHAMPAGNE</option>
-      <option value="crimson" {% if current_user.theme=='crimson' %}selected{% endif %}>BORDEAUX</option>
-      <option value="ghost" {% if current_user.theme=='ghost' %}selected{% endif %}>IVORY</option>
+      <option value="iron" {% if current_user.theme=='iron' %}selected{% endif %}>TERMINAL</option>
+      <option value="gold" {% if current_user.theme=='gold' %}selected{% endif %}>AMBER</option>
+      <option value="crimson" {% if current_user.theme=='crimson' %}selected{% endif %}>REDALERT</option>
+      <option value="ghost" {% if current_user.theme=='ghost' %}selected{% endif %}>PAPER</option>
     </select>
     <span class="muted">updates the whole app instantly</span>
   </form>
